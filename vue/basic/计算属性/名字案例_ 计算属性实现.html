@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名字案例_ 计算属性实现.html</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        姓：<input type="text" v-model="firstName"> <br>
+        名：<input type="text" v-model:value="lastName"><br>
+        全名：<span>{{fullName}}</span><br>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                firstName:'张',
+                lastName:'三'
+            },
+            computed:{
+                fullName:{
+                    // 有人读取fullName get被调用
+                    // 初次的读取有缓存，当返回值改变时会重新调用
+                    get(){
+                        console.log('get调用')
+                        return this.firstName + '-' + this.lastName
+                    },
+                    //修改fullName的值，会被调用set函数
+                    set(value){
+                        console.log('set',value)
+                        const tt = value.split('-')
+                        this.firstName = tt[0]
+                        this.lastName = tt[1]
+                    }
+                }
+            }
+           
+        })
+    </script>
+</body>
+</html>

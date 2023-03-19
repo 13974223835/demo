@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本列表</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="key">
+            更新马冬梅的信息
+        </button>
+        <ul>
+            <li v-for="t in persons" :key="t.id">{{t.number}}-{{t.age}}--{{t.sex}}</li>
+        </ul>
+    </div>
+    <script>
+    new Vue({
+        el:'#app',
+        data:{
+                persons: [
+                    { id: '001', number: '马冬梅', age: 66,sex:'女' },
+                    { id: '002', number: '周冬雨', age: 55,sex:'女' },
+                    { id: '003', number: '周杰伦', age: 77,sex:'男' },
+                    { id: '004', number: '温兆伦', age: 33,sex:'男' },
+                ],
+        },
+        methods: {
+            key(){
+                // this.persons[0].number='马先生'//生效
+                // this.persons[0].age=60//生效
+                // this.persons[0].sex='男'//生效
+                
+                // this.persons[0] = {id: '001', number: '马先生', age: 60,sex:'男' } //为啥不生效
+
+                this.persons.splice(0,1,{id: '001', number: '马先生', age: 60,sex:'男'})
+                //要是不用vue包装的方法实现也有另外种方法，在控制台 Vue.set(vm._data.student.hobby,1,'打台球')
+                //vm.$set(vm._data.student.hobby,1,'打台球')
+            }
+        }
+    })
+    </script>
+</body>
+</html>

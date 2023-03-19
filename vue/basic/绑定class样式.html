@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定样式</title>
+</head>
+
+<body>
+  <style>
+    .q {
+      height: 200px;
+      width: 200px;
+      border: 2px solid;
+    }
+
+    .w {
+      background-color: bisque;
+
+    }
+
+    .r {
+      font-size: x-large;
+    }
+  </style>
+  <script src="./js/vue.js"></script>
+  <div id="app">
+    <!-- 绑定class样式--字符串写法，适用于: 样式的类名不确定，需要动态指定 -->
+    <div class="q" :class="a" @click="e">ttt</div>
+    <!--绑定class样式--数组写法，适用于: 要绑定的样式个数不确定、名字也不确定  -->
+    <div class="q" :class="s">ttt</div>
+    <!-- 绑定class样式--对象写法，适用于:要绑定的样式个数确定、名字也确定，但要动态决定用不用 -->
+    <div class="q" :class="d">ttt</div>
+
+    <!-- style对象写法 -->
+    <div class="q" :style="styleObj">ttt</div>
+    <!-- style数组写法 -->
+    <div class="q" :style="[styleObj,styleObj2]">ttt</div>
+
+    <div class="q" :style="styleObj3">ttt</div>
+
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        a: 'w',
+        s: ['w', 'r'],
+        d: {
+          w: true,
+          r: true,
+        },
+        
+        styleObj: {
+          fontSize: '40px'
+        },
+        styleObj2: {
+          backgroundColor: "red"
+        },
+
+        styleObj3: [
+          {
+            fontSize: '40px'
+          },
+          {
+          backgroundColor: "red"
+        },
+        ]
+      },
+      methods: {
+        e() {
+          this.a = 'r'
+        }
+      },
+    })
+
+  </script>
+</body>
+
+</html>

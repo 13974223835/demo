@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.vue数据监视原理</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+    <!--  当你前期没想添加性别，data那块没添加，在网页console上2种方法
+        //vm.studengt的student不能时属性里的data和vm
+        1：Vue._data(vm._data.studengt,'sex','男')
+        2: vm.$set(vm.student,'sex','男')
+
+        
+    -->
+    <div id="app">
+        <button @click="addsex">添加个性别</button><br>
+
+        <h2>地方:{{name}}</h2>
+        <h2>地址:{{address}}</h2>
+        <h2>名:{{student.name}}</h2>
+        <h2 v-if="student.sex">性别:{{student.sex}}</h2>
+
+
+        对外年龄：{{student.age.rage}}<br>
+        对内年龄:{{student.age.sage}}<br>
+        <ul >
+            <li v-for="x,index in student.friends" @Key="index">
+                {{x.name}}--{{x.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: '好地方',
+                address: '北京',
+                student: {
+                    name: 'tom',
+                    // sex:'男',
+                    age: {
+                        rage: 55,
+                        sage: 33,
+                    },
+                    friends: [
+                        { name: 'jerry', age: 35 },
+                        { name: 'tony', age: 39 }
+                    ]
+                },
+            },
+            methods: {
+                addsex(){
+                    //’this.student‘  这个student的位置不能时data和vm
+                    // Vue.set(this.studengt,'sex','男')
+                    this.$set(this.student,'sex','男')
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

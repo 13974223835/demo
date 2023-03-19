@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root" :x="n">
+        <h2>当前的n值是：{{n}}</h2>
+        <button @click="add">点我n+1</button>
+        <!-- <h2 v-text="n"></h2> -->
+        <button @click="bye">点我销毁</button>
+    </div>  
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            // 使用template挂载  里面的div会代替掉容器里的'id="root" :x="n"'，标签也没有提示
+            // template:`<div><h2>当前的n值是：{{n}}</h2><button @click="add">点我n+1</button></div>`,
+            data:{
+                n:1,
+            },
+            methods:{
+                add(){
+                    
+                    this.n++,
+                    console.log('add')
+                },
+                // 调用$destroy启动销毁vm
+                // $destroy 完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器.
+                bye(){
+                    console.log('bye')
+                    this.$destroy()
+                }
+            },
+            watch:{
+              n(){
+                // console.log('n变了')
+              }  
+            },
+            beforeCreate() {
+                // console.log('beforeCreate')
+                // console.log(this)
+                // // 断点
+                // debugger;
+            },
+            created(){
+                // console.log(this)
+                // console.log('created')
+                // debugger;
+            },
+            beforeMount(){
+                // console.log('beforeMount')
+                // console.log(this)
+                // document.querySelector('h2').innerText = 'haha'
+                // debugger;
+            },
+            mounted() {
+                // console.log('mounted')
+                // console.log(this)
+                // document.querySelector('h2').innerText = 123123
+                // console.log('mounted',this.$el instanceof HTMLElement)
+                // debugger; 
+            },
+            beforeUpdate(){
+                // console.log('beforeUpdate')
+                // // console.log(this.n)
+                // debugger;
+            },
+            updated() {
+                // console.log("updated")
+                // // console.log(this.n)
+                // debugger;
+            },
+            //以下2个阶段临近销毁，会关闭定时器，取消订阅消息，解绑自定义事件等收尾操作
+            beforeDestroy() {
+                console.log('beforeDestroy')
+                // this.add()
+            },
+            destroyed(){
+                // console.log('destroyed')
+            }
+        })
+    </script>
+    
+</body>
+</html>

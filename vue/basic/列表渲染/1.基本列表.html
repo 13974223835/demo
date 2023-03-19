@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本列表</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <!-- in可以换成of    遍历集合-->
+            <li v-for="t in persons" :key="t.id">{{t.number}}-{{t.age}}</li>
+            <!-- 遍历对象 -->
+            <li v-for="a,b in car">{{b}}--{{a}}</li>
+            <!--  遍历字符串-->
+            <li v-for="c,index in str">{{c}}--{{index}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({ 
+            el: '#app',
+            data: {
+                persons: [
+                    { id: '001', number: '小学', age: '21' },
+                    { id: '002', number: '中学', age: '22' },
+                    { id: '003', number: '大学', age: '23' },
+                ],
+                car:{
+                    name:'本田',
+                    age:'2000',
+                },
+                str:'hello'
+            },
+        })
+    </script>
+</body>
+
+</html>

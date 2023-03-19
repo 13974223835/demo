@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本列表</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 用index作为key可能会引发的问题：
+            若对数据进行逆序添加、逆序删除等破坏顺序操作：会产生没有必要的真实DOM更新 ==> 界面效果没问题, 但效率低
+            若结构中还包含输入类的DOM：会产生错误DOM更新 ==> 界面有问题 -->
+    <div id="app">
+        <button @click="qdd">添加一个人</button>
+        <ul>
+            <!-- in可以换成of   遍历集合  没有添加:key系统会默认添加:key=index   -->
+            <li v-for="t,index in persons" :key="index">{{t.number}}-{{t.age}}<input type="text"></li>
+        </ul>
+    </div>
+    <script>
+        new Vue({ 
+            el: '#app',
+            data: {
+                persons: [
+                    { id: '001', number: '小学', age: '21' },
+                    { id: '002', number: '中学', age: '22' },
+                    { id: '003', number: '大学', age: '23' },
+                ],
+            },
+            methods: {
+                qdd(){
+                    const t ={id:'004',number:'大学1',age:'24'}
+                    this.persons.unshift(t)//push尾位
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

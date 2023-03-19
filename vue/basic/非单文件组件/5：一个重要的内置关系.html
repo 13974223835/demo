@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <!-- 
+        1.一个重要的内置关系: VueComponent.prototype._proto_=== Vue.prototype
+        2.为什么要有这个关系:让组件实例对象(vc) 可以访问到 Vue原型上的属性、方法。
+        控制台查看vueconponent：console.dir(school)
+     -->
+</head>
+<body>
+    <div id="root">
+        <school></school>
+    </div>
+    <script type="text/javascript">
+    
+        Vue.prototype.x = 99
+        
+        const school = Vue.extend({ 
+            // name:'eee',
+            template:`
+                <div>
+                    <div><h2>学校名称：{{name}}</h2></div>
+                    <div><h2>学校地址：{{address}}</h2></div>
+                    <button @click='showX'>点我输出</button>
+                </div>
+            `,
+            data(){
+                return {
+                    name:'一中',
+                    address:'北京',
+                }
+            },
+            methods: {
+                showX(){
+                    console.log(this.x)
+                }
+            },
+        })
+
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                msg:'你好',
+            },
+            components:{school}
+        })
+
+        // console.log(school.prototype._proto_=== Vue.protutype)
+
+        // function Demo(){
+        //     this.a=1
+        //     this.b=2
+        // }
+        
+        // const e = new Demo()
+
+        // console.log(Demo.prototype)//显示原型属性
+        // console.log(e._proto_)//隐氏原型属性
+
+        // Demo.prototype.x = 100
+        // console.log('@',e.x)
+        // console.log(e)
+
+    </script>
+</body>
+</html>

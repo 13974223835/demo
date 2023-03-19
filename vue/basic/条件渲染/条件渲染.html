@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        v-show:选择false后再浏览器显示style='display:none'
+        v-if:选择false后浏览器上直接消失
+     -->
+    <div id="app" >
+        <!-- <div v-show='a'>
+            hello111,{{name}}
+        </div> -->
+        <div v-if="true">
+            hello,{{name}}
+        </div>
+        <div>{{n}}<br>
+            <button @click="n++">点我n+1</button>
+        </div>
+        
+        <!-- <div v-show="n == 1">111</div>
+        <div v-show="n == 2">222</div>
+        <div v-show="n == 3">333</div> -->
+
+        <!-- <div v-if="n == 1">111</div>
+        <div v-else-if="n == 2">222</div>
+        <div v-else-if="n == 3">333</div> -->
+
+        <!-- template和v-if是配合使用 -->
+        <template v-if="n == 1">
+            <div>111</div>
+            <div>222</div>
+            <div>333</div>
+        </template>
+
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                name:'先生',
+                a:false,
+                n:0
+            },
+           
+        })
+    </script>
+</body>
+</html>

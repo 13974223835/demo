@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名字案例_ 计算属性实现.html</title>
+    <script src="../js/vue.js"></script>
+
+    <!-- computed和watch之间的区别:
+    1.computed能完成的功能，watch都可以完成。
+    2.watch能完成的功能，computed不一定能完成，例如: watch可以进行异步操作 
+    -->
+</head>
+<body>
+    <div id="app">
+        姓：<input type="text" v-model="firstName"> <br>
+        名：<input type="text" v-model:value="lastName"><br>
+        全名：<span>{{fullName}}</span><br>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:"#app",
+            data:{
+                firstName:'张',
+                lastName:'三'
+            },
+            computed:{
+                fullName(){
+                    console.log('get调用')
+                    return this.firstName + '-' + this.lastName
+                }
+            }
+           
+        })
+    </script>
+</body>
+</html>

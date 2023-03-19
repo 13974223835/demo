@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.vue监视原理</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        形容：{{name}}<br>
+        地址：{{address}}
+    </div>
+    <script>
+        const vm =new Vue({
+            el:'#app',
+            data: {
+               name:'好地方',
+               address:'北京',
+               student:{
+                    name:'tom',
+                    age:{
+                            rage:55,
+                            sage:33,
+                    }
+                }
+            },
+        })
+    </script>
+    
+</body>
+</html>
